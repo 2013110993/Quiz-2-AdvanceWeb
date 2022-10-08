@@ -21,14 +21,14 @@ const randomStringSource = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 
 func (app *application) writeJSON(w http.ResponseWriter, status int, data envelope, headers http.Header) error {
 
-	// Format JSON object for cmd
+	// Format JSON object
 	js, err := json.MarshalIndent(data, "", "\t")
 
 	if err != nil {
 		return err
 	}
 
-	// Append newline for user readbility
+	// Append newline
 	js = append(js, '\n')
 
 	// Add headers
@@ -36,10 +36,10 @@ func (app *application) writeJSON(w http.ResponseWriter, status int, data envelo
 		w.Header()[key] = value
 	}
 
-	// Specify that we will serve our responses using JSON
+	// Specify what will be serve the responses using JSON
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
-	// Write the byte slice containing the JSON response body
+	// Write the byte slice containing the JSON  body
 	w.Write(js)
 	return nil
 }
@@ -61,8 +61,8 @@ func (app *application) generateRandomString(length int) string {
 
 // Utility function for reading ID in Endpoint
 func (app *application) readIDParam(r *http.Request) (int64, error) {
-	// Use the param
-	// Use the ParamsFormContext
+	// Use param
+	// Use ParamsFormContext
 	params := httprouter.ParamsFromContext(r.Context())
 
 	id, err := strconv.ParseInt(params.ByName("id"), 10, 64)

@@ -14,9 +14,9 @@ func (app *application) routes() *httprouter.Router {
 	router.NotFound = http.HandlerFunc(app.notFoundResponse)
 	router.MethodNotAllowed = http.HandlerFunc(app.MethodNotAllowedReponse)
 	router.HandlerFunc(http.MethodGet, "/v1/healthcheck", app.healthcheckHandler)
-	router.HandlerFunc(http.MethodGet, "/v1/randomized/:id", app.randomizedHandler)
-	router.HandlerFunc(http.MethodPost, "/v1/personalinfo", app.createUserHandler)
-	router.HandlerFunc(http.MethodGet, "/v1/personalinfo", app.showInfoHandler)
+	router.HandlerFunc(http.MethodGet, "/v1/random/:id", app.randomHandler)
+	router.HandlerFunc(http.MethodPost, "/v1/createuser", app.createUserHandler)
+	router.HandlerFunc(http.MethodGet, "/v1/info", app.showInfoHandler)
 
 	return router
 }
